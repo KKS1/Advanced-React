@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './Header';
 
-const GlobalStyled = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'radnika_next';
     src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
@@ -53,7 +53,7 @@ const InnerStyles = styled.div`
 export default function Page({ children }) {
   return (
     <div>
-      <GlobalStyled />
+      <GlobalStyles />
       <Header />
       <InnerStyles>{children}</InnerStyles>
     </div>

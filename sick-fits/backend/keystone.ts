@@ -44,10 +44,14 @@ export default withAuth(
     }),
     ui: {
       // show the keystone UI only to people who pass this test
-      isAccessAllowed: () => true,
+      isAccessAllowed: ({ session }) => {
+        // console.log(session);
+        return session?.data;
+      },
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      User: `id`,
+      // GraphQL Query
+      User: `id name email`,
     }),
   })
 );

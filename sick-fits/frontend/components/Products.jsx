@@ -1,6 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import styled from 'styled-components';
+import Product from './Product';
 
 const ALL_PRODUCTS_QUERY = gql`
   # Write your query or mutation here
@@ -37,7 +38,7 @@ export default function Products() {
     <div>
       <ProductsListStyles>
         {data.allProducts.map((product) => (
-          <p key={product.id}>{product.name}</p>
+          <Product key={product.id} product={product} />
         ))}
       </ProductsListStyles>
     </div>

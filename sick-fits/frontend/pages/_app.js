@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
 import Router from 'next/router';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
 import '../components/styles/nprogress.css';

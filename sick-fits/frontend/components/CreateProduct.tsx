@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 
 type FormData = {
   firstName: string;
@@ -24,7 +25,31 @@ function CreateProduct() {
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formFirstName">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter first name"
+          isInvalid={!!errors.firstName}
+          {...register('firstName', {
+            required: 'Please enter your first name.',
+            minLength: { value: 5, message: 'Minimum length is 5 characters' },
+          })}
+        />
+        <Form.Text className="text-muted">eg. Kanwaljeet</Form.Text>
+
+        <ErrorMessage
+          name="firstName"
+          errors={errors}
+          render={({ message }) => (
+            <Form.Control.Feedback type="invalid">
+              {message}
+            </Form.Control.Feedback>
+          )}
+        />
+      </Form.Group>
+
+      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>First Name</Form.Label>
         <Form.Control
           type="text"
@@ -37,7 +62,7 @@ function CreateProduct() {
         <Form.Control.Feedback type="invalid">
           Please enter your first name.
         </Form.Control.Feedback>
-      </Form.Group>
+      </Form.Group> */}
 
       {errors.firstName && <div>this is first name error</div>}
 

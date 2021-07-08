@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,14 +9,6 @@ type FormValues = {
   firstName: string;
   lastName: string;
   age: number;
-  image: File;
-};
-
-const defaultFormValues: FormValues = {
-  firstName: '',
-  lastName: '',
-  age: undefined,
-  image: undefined,
 };
 
 const schema = yup.object().shape({
@@ -36,7 +28,7 @@ const schema = yup.object().shape({
     .min(18, 'You must be atleast 18 years of age to apply'),
 });
 
-function CreateProduct() {
+export default function HookFormExample() {
   const {
     register,
     handleSubmit,
@@ -44,11 +36,9 @@ function CreateProduct() {
     control,
     getValues,
     setValue,
-    reset,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
-    defaultValues: defaultFormValues,
   });
 
   const onSubmit = (data) => {
@@ -134,36 +124,18 @@ function CreateProduct() {
         />
       </Form.Group>
 
-      <Form.Group controlId="formImage" className="mb-3">
+      <Form.Group controlId="formFile" className="mb-3">
         <Form.Label>Product Image</Form.Label>
         <Form.Control
           type="file"
           className="form-control"
-          {...register('image')}
+          {...register('formImage')}
         />
       </Form.Group>
 
-      <Container>
-        <Row>
-          <Col>
-            <Button
-              className="mr-3"
-              variant="secondary"
-              type="button"
-              onClick={() => reset(defaultFormValues)}
-            >
-              Reset
-            </Button>
-          </Col>
-          <Col>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
     </Form>
   );
 }
-
-export default CreateProduct;

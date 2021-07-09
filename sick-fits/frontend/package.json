@@ -25,6 +25,7 @@
     "bootstrap": "^5.0.0",
     "date-fns": "^2.16.1",
     "downshift": "^6.0.6",
+    "formik": "^2.2.9",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
     "graphql-upload": "^11.0.0",
